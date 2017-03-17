@@ -2,6 +2,7 @@ package com.volando.crm.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class User
 	private String username;
 	private String password;
 	
-	@OneToMany(targetEntity=Role.class)
+	@OneToMany(targetEntity=Role.class, cascade = CascadeType.PERSIST)
 	private List<Role> roles;
 
 	public String getImage() {
@@ -65,6 +66,13 @@ public class User
 		super();
 	}
 
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
+	
 	
 	
 	
