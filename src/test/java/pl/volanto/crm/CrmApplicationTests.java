@@ -1,4 +1,4 @@
-package com.volando.crm;
+package pl.volanto.crm;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

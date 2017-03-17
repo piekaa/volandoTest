@@ -1,10 +1,10 @@
-package com.volando.crm.DAO;
+package pl.volanto.crm.DAO;
 
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.volando.crm.model.User;
+import pl.volanto.crm.model.User;
 
 public interface UserRepository extends JpaRepository <User, Long> 
 {

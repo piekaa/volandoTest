@@ -1,4 +1,4 @@
-package com.volando.crm;
+package pl.volanto.crm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

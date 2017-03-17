@@ -1,11 +1,13 @@
-package com.volando.crm.model;
+package pl.volanto.crm.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
-public class Role 
+public class Role implements GrantedAuthority
 {
 	@Id
 	@GeneratedValue
@@ -28,6 +30,10 @@ public class Role
 	public Role(String role) {
 		super();
 		this.role = role;
+	}
+	@Override
+	public String getAuthority() {
+		return role;
 	}
 	
 	
