@@ -1,8 +1,7 @@
 package pl.volanto.crm.service;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+ 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +14,28 @@ import pl.volanto.crm.model.Contact;
 
 @RestController
 public class ContactService 
-{
-	
-	@Autowired
+{ 
 	ContactRepository contactRepository;
-	
+	  
+	public ContactService(ContactRepository contactRepository) {
+		super();
+		this.contactRepository = contactRepository;
+	}
+
 	@RequestMapping(value = "contacts")
 	public List<Contact> getContacts()
 	{
 		return contactRepository.findAll();
 	}
+	
+	
+	@RequestMapping(value = "contacts/{id}")
+	public Contact getContact(@PathVariable Long id)
+	{
+		return contactRepository.findOne(id);
+	}
+	
+	
 	
 	@RequestMapping(value = "contacts", method = RequestMethod.POST)
 	public Contact createContact(@RequestBody Contact contact)

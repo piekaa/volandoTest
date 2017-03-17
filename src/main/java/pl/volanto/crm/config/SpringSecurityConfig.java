@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder; 
 
+import pl.volanto.crm.DAO.UserRepository;
 import pl.volanto.crm.service.CrmUserDetailsService;
 
 
@@ -36,10 +37,20 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
 		.passwordEncoder(passwordEncoder());
 	}
 	
+	UserRepository userRepository;
+	
+	
+	
+	
+	public SpringSecurityConfig(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+
 	@Bean
 	public UserDetailsService userDetailsService()
 	{
-		return new CrmUserDetailsService();
+		return new CrmUserDetailsService(userRepository);
 	}
 	
 	

@@ -1,8 +1,7 @@
 package pl.volanto.crm.service;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
+ 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService; 
@@ -11,10 +10,24 @@ import pl.volanto.crm.DAO.UserRepository;
  
 public class CrmUserDetailsService implements UserDetailsService
 {
-
-	@Autowired
+ 
 	private UserRepository userRepository;
-	
+	 
+	public CrmUserDetailsService(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+
+
+
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+
+
+
 	@Override
 	public UserDetails loadUserByUsername(String username)
 	{
