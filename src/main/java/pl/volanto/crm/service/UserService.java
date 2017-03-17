@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.volanto.crm.DAO.UserRepository;
+import pl.volanto.crm.config.SpringSecurityConfig;
 import pl.volanto.crm.model.Role;
 import pl.volanto.crm.model.User;
 
@@ -33,8 +35,9 @@ public class UserService
 		if( userRepository.findByUsername(username).size() > 0 )
 			return null;
 		
+		PasswordEncoder passwordEncoder = SpringSecurityConfig.passwordEncoder();
 		
-		User user = new User(username, password);
+		User user = new User(username, passwordEncoder.encode(password));
 		List<Role> roles = new LinkedList<Role>();
 		roles.add(new Role("ROLE_USER"));
 		

@@ -9,4 +9,5 @@ import pl.volanto.crm.model.User;
 public interface UserRepository extends JpaRepository <User, Long> 
 {
 	Collection<User> findByUsername(String username);
+	boolean existsByUsername(String username);
 }
